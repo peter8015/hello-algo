@@ -4,12 +4,14 @@ package chapter_tree;
  * @author zhanghaibing
  * @date 2024-02-02
  */
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.PrintUtil;
 import utils.TreeNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,4 +72,18 @@ public class BfsTest {
         assertEquals(1, actualResult.get(0).intValue());
     }
 
+    @Test
+    public void testLevelBfs() {
+        // 执行层级遍历
+        List<List<Integer>> result = bfs.levelBfs(root);
+
+        // 预期结果
+        List<List<Integer>> expected = new ArrayList();
+        expected.add(new ArrayList<>(Arrays.asList(1)));
+        expected.add(new ArrayList<>(Arrays.asList(2, 3)));
+        expected.add(new ArrayList<>(Arrays.asList(4, 5, 6, 7)));
+
+        // 验证结果是否符合预期
+        Assert.assertEquals(expected, result);
+    }
 }

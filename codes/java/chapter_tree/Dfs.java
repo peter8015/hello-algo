@@ -25,4 +25,23 @@ public class Dfs {
     }
 
 
+
+    public List<Integer> inOrderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList();
+
+        inOrder(root, result);
+        return result;
+    }
+
+    //leetcode94 给定一个二叉树的根节点 root ，返回 它的 中序 遍历 。
+    public void inOrder(TreeNode root, List<Integer> result) {
+        if(root == null) {
+            return;
+        }
+
+        inOrder(root.left, result);
+        result.add(root.val);
+        inOrder(root.right, result);
+    }
+
 }

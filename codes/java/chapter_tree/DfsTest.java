@@ -4,11 +4,14 @@ package chapter_tree;
  * @author zhanghaibing
  * @date 2024-02-02
  */
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import utils.TreeNode;
 
 import static org.junit.Assert.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -44,43 +47,17 @@ public class DfsTest {
         assertEquals(expected, actual);
     }
 
-//    @Test
-//    public void testPreOrderTraversalWithNullRoot() {
-//        // Arrange
-//        List<Integer> expected = new ArrayList<>();
-//
-//        // Act
-//        List<Integer> actual = dfs.preOrder(null);
-//
-//        // Assert
-//        assertEquals(expected, actual);
-//    }
+    @Test
+    public void testInOrder() {
+        List<Integer> result = new ArrayList<>();
+        dfs.inOrder(root, result);
 
-//    @Test
-//    public void testPreOrderTraversalWithEmptyTree() {
-//        // Arrange
-//        TreeNode emptyRoot = new TreeNode(null);
-//        List<Integer> expected = new ArrayList<>();
-//
-//        // Act
-//        List<Integer> actual = dfs.preOrder(emptyRoot);
-//
-//        // Assert
-//        assertEquals(expected, actual);
-//    }
+        // 预期结果
+        List<Integer> expected = new ArrayList<>(Arrays.asList(4, 2, 5, 1, 3));
 
-//    @Test
-//    public void testPreOrderTraversalWithSingleNode() {
-//        // Arrange
-//        TreeNode singleNodeRoot = new TreeNode(1);
-//        List<Integer> expected = new ArrayList<>();
-//        expected.add(1);
-//
-//        // Act
-//        List<Integer> actual = dfs.preOrder(singleNodeRoot);
-//
-//        // Assert
-//        assertEquals(expected, actual);
-//    }
+        // 验证结果是否符合预期
+        Assert.assertEquals(expected, result);
+    }
+
 }
 
