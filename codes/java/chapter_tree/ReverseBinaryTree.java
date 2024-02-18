@@ -8,8 +8,8 @@ import utils.TreeNode;
  */
 public class ReverseBinaryTree {
 
-    //leetcode 226. 翻转二叉树
-    //给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
+    // leetcode 226 翻转二叉树
+    // 给你一棵二叉树的根节点 root ，翻转这棵二叉树，并返回其根节点。
     public TreeNode reverseTree(TreeNode root) {
         // 递归函数的终止条件，当root为空时返回空
         if(root == null) {
