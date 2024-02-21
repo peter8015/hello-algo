@@ -1,0 +1,21 @@
+@startuml
+class others.leetcode588.FileSystem {
+- Map<String,Node> fileSystem
++ void mkdir(String)
++ List<String> ls(String)
++ void addContentToFile(String,String)
++ String readContentFromFile(String)
+~ boolean isDirectory(String)
+- boolean isFile(String)
+- boolean isValidPath(String)
+- Node getOrCreateFileNode(String)
+}
+class others.leetcode588.FileSystem.Node {
+~ String type
+~ StringBuilder content
+~ Map<String,Node> children
+}
+
+
+others.leetcode588.FileSystem +.. others.leetcode588.FileSystem.Node
+@enduml
