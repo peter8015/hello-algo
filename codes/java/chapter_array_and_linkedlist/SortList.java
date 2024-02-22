@@ -94,37 +94,41 @@ public class SortList {
 
 
     public ListNode sortListx(ListNode head, ListNode tail) {
-        // 判断head为空，返回head
+
+        // head 为空直接返回
         if(head == null) {
             return head;
         }
 
+        // 有两个节点时
         if(head.next == tail) {
             head.next = null;
             return head;
         }
 
-        // 利用快慢指针找出中间节点，递归进行排序
+        // 进行归并排序并合并两个有序链表
         ListNode slow = head, fast = head;
         while(fast != tail) {
             slow = slow.next;
             fast = fast.next;
-            if (fast != tail) {
+            if(fast != tail) {
                 fast = fast.next;
             }
         }
         ListNode mid = slow;
+
         ListNode left = sortListx(head, mid);
         ListNode right = sortListx(mid, tail);
 
-        // 合并两个有序的链表
         return mergex(left, right);
     }
 
     public ListNode mergex(ListNode left, ListNode right) {
+        // 定义首节点
         ListNode dummy = new ListNode(0);
         ListNode temp = dummy, temp1 = left, temp2 = right;
 
+        // 两个链表不为空的情况下，对比值，合并链表
         while(temp1 != null && temp2 != null) {
             if(temp1.val <= temp2.val) {
                 temp.next = temp1;
@@ -136,14 +140,16 @@ public class SortList {
             temp = temp.next;
         }
 
-        if(temp1 != null) {
-            temp.next = temp1;
-        } else if(temp2 != null) {
+        // 两个链表其中一个为空的情况
+        if(temp1 == null) {
             temp.next = temp2;
         }
-
+        if(temp2 == null) {
+            temp.next = temp1;
+        }
         return dummy.next;
     }
+
 }
 
 
