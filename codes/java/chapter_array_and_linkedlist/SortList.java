@@ -10,7 +10,7 @@ public class SortList {
 
     /**
      * leetcode 148 排序链表
-     * 给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。
+     * 给你链表的头节点 head ，请将其按 升序 排列并返回 排序后的链表 。
      * <p>
      * 思路：归并排序对于链表排序来说是一种非常有效和稳定的方法。
      * <p>
@@ -88,6 +88,7 @@ public class SortList {
         } else if(temp2 != null) {
             temp.next = temp2;
         }
+
         return dummy.next;
     }
 
