@@ -24,8 +24,6 @@ public class Dfs {
         return result;
     }
 
-
-
     public List<Integer> inOrderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList();
 
