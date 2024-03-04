@@ -67,12 +67,32 @@ public class FindDuplicate {
         return r;
     }
 
+    public int findDuplicate(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return -1;
+        }
 
+        // 设定快慢指针，初始化为数组第一个元素,移动指针，直到相遇
+        int slow = nums[0], fast = nums[0];
+        do {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+
+        // 设置慢指针为数组头，两个指针一起移动，再次相遇即为重复元素
+        slow = nums[0];
+        while(slow != fast) {
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return slow;
+     }
 
     @Test
     public void test() {
         int[] nums = {1, 3, 4, 2, 2};
-        int expected = find1(nums);
+        int expected = findDuplicate(nums);
 
         assertEquals(expected, 2);
     }
