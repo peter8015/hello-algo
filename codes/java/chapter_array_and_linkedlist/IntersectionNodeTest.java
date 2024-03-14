@@ -4,58 +4,43 @@ package chapter_array_and_linkedlist;
  * @author zhanghaibing
  * @date 2024-02-04
  */
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import utils.ListNode;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class IntersectionNodeTest {
 
+    private IntersectionNode solution = new IntersectionNode();
+
     @Test
-    public void testIntersectionNode() {
-        // 创建链表A: 4 -> 1 -> 8 -> 4 -> 5
-        ListNode nodeA1 = new ListNode(4);
-        ListNode nodeA2 = new ListNode(1);
-        ListNode nodeA3 = new ListNode(8);
-        ListNode nodeA4 = new ListNode(4);
-        ListNode nodeA5 = new ListNode(5);
+    public void testGetIntersectionNode() {
+        // 测试用例1：无相交链表
+        ListNode headA1 = new ListNode(1);
+        headA1.next = new ListNode(2);
+        ListNode headB1 = new ListNode(3);
+        headB1.next = new ListNode(4);
+        assertNull(solution.getIntersectionNode(headA1, headB1));
 
-        nodeA1.next = nodeA2;
-        nodeA2.next = nodeA3;
-        nodeA3.next = nodeA4;
-        nodeA4.next = nodeA5;
+        // 测试用例2：有相交链表，相交点在尾部
+        ListNode nodeC = new ListNode(5);
+        ListNode tailA = new ListNode(6);
+        ListNode tailB = new ListNode(7);
+        headA1.next.next = nodeC;
+        headB1.next.next = nodeC;
 
-        // 创建链表B: 5 -> 6 -> 1 -> 8 -> 4 -> 5
-        ListNode nodeB5 = new ListNode(5);
-        ListNode nodeB6 = new ListNode(6);
-        ListNode nodeB1 = new ListNode(1);
-        ListNode nodeB8 = new ListNode(8);
-        ListNode nodeB4 = new ListNode(4);
-        ListNode nodeB55 = new ListNode(5);
+        assertEquals(nodeC, solution.getIntersectionNode(headA1, headB1));
 
-        nodeB5.next = nodeB6;
-        nodeB6.next = nodeB1;
-        nodeB1.next = nodeB8;
-        nodeB8.next = nodeB4;
-        nodeB4.next = nodeB55;
+        // 测试用例3：有相交链表，相交点在中间
+        ListNode headA2 = new ListNode(8);
+        ListNode headB2 = new ListNode(9);
+        ListNode nodeE = new ListNode(10);
+        ListNode nodeD = new ListNode(11);
+        headA2.next = nodeD;
+        headB2.next = nodeE;
+        nodeD.next = nodeE;
 
-        // 期望的交点是2，因为2是两个链表中都有的节点
-        ListNode intersection = new IntersectionNode().intersectionNode(nodeA1, nodeB5);
-
-        // 验证结果是否正确
-        Assert.assertNotNull(intersection);
-        Assert.assertEquals(2, intersection.val);
-
-        // 测试链表A为空的情况
-        intersection = new IntersectionNode().intersectionNode(null, nodeB1);
-        Assert.assertNull(intersection);
-
-        // 测试链表B为空的情况
-        intersection = new IntersectionNode().intersectionNode(nodeA1, null);
-        Assert.assertNull(intersection);
-
-        // 测试两个链表都没有交点的情况
-        intersection = new IntersectionNode().intersectionNode(nodeA4, nodeB5);
-        Assert.assertNull(intersection);
+        assertEquals(nodeE, solution.getIntersectionNode(headA2, headB2));
     }
 }
 

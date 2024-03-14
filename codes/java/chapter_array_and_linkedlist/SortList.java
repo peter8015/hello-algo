@@ -29,7 +29,7 @@ public class SortList {
      * 2. 利用快慢指针找到中间节点的方法。
      */
     public ListNode sortList(ListNode head) {
-        return sortListx(head, null);
+        return sortList(head, null);
     }
 
     /**
