@@ -4,86 +4,30 @@ package chapter_tree;
  * @author zhanghaibing
  * @date 2024-02-02
  */
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import utils.PrintUtil;
 import utils.TreeNode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.*;
 
 public class BfsTest {
 
-    private Bfs bfs;
-    private TreeNode root;
-
-    @Before
-    public void setUp() {
-        bfs = new Bfs();
-        root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        root.right = new TreeNode(3);
-        root.left.left = new TreeNode(4);
-        root.left.right = new TreeNode(5);
-        root.right.left = new TreeNode(6);
-        root.right.right = new TreeNode(7);
-    }
-
     @Test
-    public void testBfs() {
-        // 测试树的深度优先遍历
-        List<Integer> expectedResult = new ArrayList<>();
-        expectedResult.add(1);
-        expectedResult.add(2);
-        expectedResult.add(3);
-        expectedResult.add(4);
-        expectedResult.add(5);
-        expectedResult.add(6);
-        expectedResult.add(7);
+    public void testLevelOrderTraversal() {
+        Bfs bfs = new Bfs();
 
-        List<Integer> actualResult = bfs.bfs(root);
-
-        actualResult.stream().forEach(val -> System.out.println(val));
-
-        assertEquals(expectedResult, actualResult);
-    }
-
-    @Test
-    public void testBfsWithEmptyTree() {
-        // 测试空树
-        List<Integer> actualResult = bfs.bfs(null);
-
-        assertTrue(actualResult.isEmpty());
-    }
-
-    @Test
-    public void testBfsWithSingleNode() {
-        // 测试只有一个节点的树
-        TreeNode singleNode = new TreeNode(1);
-        List<Integer> actualResult = bfs.bfs(singleNode);
-        System.out.println(actualResult.get(0));
-
-        assertEquals(1, actualResult.size());
-        assertEquals(1, actualResult.get(0).intValue());
-    }
-
-    @Test
-    public void testLevelBfs() {
-        // 执行层级遍历
-        List<List<Integer>> result = bfs.levelBfs(root);
-
-        // 预期结果
-        List<List<Integer>> expected = new ArrayList();
-        expected.add(new ArrayList<>(Arrays.asList(1)));
-        expected.add(new ArrayList<>(Arrays.asList(2, 3)));
-        expected.add(new ArrayList<>(Arrays.asList(4, 5, 6, 7)));
-
-        // 验证结果是否符合预期
-        Assert.assertEquals(expected, result);
+        // 测试用例3：具有多个节点的完全平衡树
+        TreeNode tree3 = new TreeNode(3);
+        tree3.left = new TreeNode(9);
+        tree3.right = new TreeNode(20);
+        tree3.left.left = null;
+        tree3.left.right = null;
+        tree3.right.left = new TreeNode(15);
+        tree3.right.right = new TreeNode(7);
+        assertEquals(
+                Arrays.asList(Arrays.asList(3), Arrays.asList(9, 20), Arrays.asList(15, 7)),
+                bfs.levelOrder(tree3)
+        );
     }
 }

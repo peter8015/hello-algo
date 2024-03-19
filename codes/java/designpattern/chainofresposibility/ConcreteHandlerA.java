@@ -24,5 +24,9 @@ public class ConcreteHandlerA implements Handler {
     public void setNext(Handler nextHandler) {
         this.nextHandler = nextHandler;
     }
+
+
+
+
 }
 
