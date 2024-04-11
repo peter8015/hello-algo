@@ -11,11 +11,11 @@ import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
-public class BfsTest {
+public class BfsLevelTest {
 
     @Test
     public void testLevelOrderTraversal() {
-        Bfs bfs = new Bfs();
+        BfsLevel bfs = new BfsLevel();
 
         // 测试用例3：具有多个节点的完全平衡树
         TreeNode tree3 = new TreeNode(3);

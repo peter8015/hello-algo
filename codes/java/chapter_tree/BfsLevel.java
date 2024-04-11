@@ -11,7 +11,7 @@ import java.util.Queue;
  * @author zhanghaibing
  * @date 2024-02-02
  */
-public class Bfs {
+public class BfsLevel {
     /**
      * leetcode 102 给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。
      *
@@ -19,6 +19,10 @@ public class Bfs {
      * 输出：[[3],[9,20],[15,7]]
      *
      * 解题思路：利用队列存储二叉树节点。
+     *
+     * 时间复杂度：
+     * 每个点进队出队各一次，故渐进时间复杂度为 O(n)。
+     *
      * 易错点：
      * 1. 写循环时不要用queue.size()，会发生变化，用变量代替。
      * 2. 用offer，最好不用add，队列满时add会报错。
@@ -56,36 +60,45 @@ public class Bfs {
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList();
+        List<List<Integer>> result = new ArrayList<>();
 
-        // 1. return result if root is null.
         if(root == null) {
             return result;
         }
 
-        // 2. use queue to store treenode
-        Queue<TreeNode> queue = new LinkedList();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
-        while(!queue.isEmpty()) {
 
+        while(!queue.isEmpty()) {
             int size = queue.size();
             List<Integer> r = new ArrayList();
+
             for(int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
-                r.add(node.val);
-
+                ;;
                 if(node.left != null) {
                     queue.add(node.left);
                 }
                 if(node.right != null) {
                     queue.add(node.right);
                 }
+                r.add(node.val);
             }
             result.add(r);
         }
-
         return result;
+    }
+
+
+    public List<List<Integer>> levelOrdery(TreeNode root) {
+        List<List<Integer>> result = new ArrayList();
+
+        if(root == null) {
+            return null;
+        }
+
+        return null;
     }
 
 }
